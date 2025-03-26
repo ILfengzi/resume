@@ -2,7 +2,7 @@
  * @Description:
  * @Author:
  * @Date: 2025-03-26 00:10:01
- * @LastEditTime: 2025-03-26 23:59:23
+ * @LastEditTime: 2025-03-27 00:06:03
  * @LastEditors: Lin Changkun
  */
 import { fileURLToPath, URL } from 'node:url'
@@ -14,7 +14,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  // base: './',
   plugins: [vue(), vueJsx(), vueDevTools()],
   resolve: {
     alias: {
