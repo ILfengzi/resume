@@ -11,26 +11,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout 🛎️
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Setup Node.js 📦
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      - name: Install pnpm
+      - name: Install pnpm 📦
         run: npm install -g pnpm
 
-      - name: Install Dependencies
+      - name: Install Dependencies 📥
         run: pnpm install
 
-      - name: Build Project
+      - name: Build Project 🔨
         run: pnpm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # 部署到gh-pages分支
