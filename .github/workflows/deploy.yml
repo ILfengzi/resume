@@ -1,24 +1,38 @@
 name: Build and Deploy
-on: [push]
+on:
+  push:
+    branches:
+      - main
+
 permissions:
   contents: write
+
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Install pnpm 🔧
-        run: |
-          npm install -g pnpm
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
-          pnpm install
-          pnpm build
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-      - name: Deploy 🚀
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Project
+        run: pnpm run build
+
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist # The folder the action should deploy.
+          branch: gh-pages # 部署到gh-pages分支
+          folder: dist # 项目构建输出目录
+          clean: true # 清理目标分支中不在构建输出中的文件
